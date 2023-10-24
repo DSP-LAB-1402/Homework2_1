@@ -73,3 +73,35 @@ grid on;
 hold on;
 stem(t,y);
 legend('input', 'Convolved signal');
+%% Homework2_2_1
+M = 100;
+
+n=0:1:100;
+w=0.54-0.46*sin(2*pi*n/M);
+h = w.*(0.25*sinc(0.25*(n-M/2))-0.15*sinc(0.15*(n-M/2)));
+s = sin(0.2*pi*n);
+x = s + sin(0.05*pi*n) + sin(0.35*pi*n);
+
+figure('Name', 'signals');
+stem(n,x);
+xlabel('Samples');
+ylabel('Amplitude');
+title('Signals');
+grid on;
+hold on;
+stem(n,s);
+legend('three frequencies', 'one frequency');
+%%%
+t=-50:50;
+y= filter(h,1,x);
+figure('Name', 'signals');
+%stem(n,x);
+xlabel('Samples');
+ylabel('Amplitude');
+title('Signals');
+grid on;
+hold on;
+stem(n,y);
+hold on;
+stem(n,s);
+legend('input signal', 'filtered signal');
