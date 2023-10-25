@@ -39,7 +39,11 @@ grid on;
 hold on;
 stem(t, y);
 legend('input', 'Convolved signal');
+
 %% Homework2_1_3
+% Here we do what we did prior for another filter, with myconv function
+%
+% Now we declare variables and signals we wnat to use
 h = [1];
 
 for j = 1:14
@@ -54,9 +58,12 @@ for i = 1:3
     x = [x ones(1, 25) zeros(1, 25)];
 end
 
+%%%
+% Here we make sure the length of y matches with input signal
 y = myconv(x, h);
 y = y(1:200);
-
+%%%
+% Here we plot signals on each other
 figure('Name', 'Convolution');
 stem(t, x);
 xlabel('Samples');
@@ -66,6 +73,7 @@ grid on;
 hold on;
 stem(t, y);
 legend('input', 'Convolved signal');
+
 %% Homework2_1_4
 x = [ones(1, 25) zeros(1, 25)];
 t = 0:1:199;
