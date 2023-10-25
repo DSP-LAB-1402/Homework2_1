@@ -11,18 +11,25 @@ clear all;
 clc;
 
 %% Homework2_1_2
-
+% In this task we want to make a psudo-integrate filter and use the
+% function we made to filter input signal
+%
+% Here we declare some variables and signals
 h = 0.1 * ones(1, 10);
 t = 0:1:199;
 x = [ones(1, 25) zeros(1, 25)];
-
+%%%
+% Here we make the input signal which its T is 50
 for i = 1:3
     x = [x ones(1, 25) zeros(1, 25)];
 end
 
+%%%
+% Here we make sure the length of y matches with input signal
 y = myconv(x, h);
 y = y(1:200);
-
+%%%
+% Here we plot signals on each other
 figure('Name', 'Convolution');
 stem(t, x);
 xlabel('Samples');
@@ -86,7 +93,7 @@ stem(t, y);
 legend('input', 'Convolved signal');
 %% Homework2_2_1
 M = 100;
-n1=0:1:200;
+n1 = 0:1:200;
 n = 0:1:100;
 w = 0.54 - 0.46 * sin(2 * pi * n / M);
 h = w .* (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
