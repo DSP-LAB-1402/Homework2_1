@@ -10,7 +10,8 @@ close all;
 clear all;
 clc;
 
-%% Homework2_2
+%% Homework2_1_2
+
 h = 0.1 * ones(1, 10);
 t = 0:1:199;
 x = [ones(1, 25) zeros(1, 25)];
@@ -31,7 +32,7 @@ grid on;
 hold on;
 stem(t, y);
 legend('input', 'Convolved signal');
-%% Homework2_3
+%% Homework2_1_3
 h = [1];
 
 for j = 1:14
@@ -58,7 +59,7 @@ grid on;
 hold on;
 stem(t, y);
 legend('input', 'Convolved signal');
-%% Homework2_4
+%% Homework2_1_4
 x = [ones(1, 25) zeros(1, 25)];
 t = 0:1:199;
 
@@ -85,36 +86,34 @@ stem(t, y);
 legend('input', 'Convolved signal');
 %% Homework2_2_1
 M = 100;
-
+n1=0:1:200;
 n = 0:1:100;
 w = 0.54 - 0.46 * sin(2 * pi * n / M);
 h = w .* (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
-s = sin(0.2 * pi * n);
-x = s + sin(0.05 * pi * n) + sin(0.35 * pi * n);
+s = sin(0.2 * pi * n1);
+x = s + sin(0.05 * pi * n1) + sin(0.35 * pi * n1);
 
 figure('Name', 'signals');
-stem(n, x);
+stem(n1, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(n, s);
+stem(n1, s);
 legend('three frequencies', 'one frequency');
 %%%
 % Homework2_2_2
 t = -50:50;
 y = filter(h, 1, x);
 figure('Name', 'signals');
-stem(n, x);
+stem(n1, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(n, y);
-hold on;
-stem(n, s);
+stem(n1, y);
 legend('input signal', 'filtered signal');
 %%%
 % Homework2_2_3
@@ -122,11 +121,11 @@ FD = Filter_Designer; % Eliptic
 y1 = FD.filter(x);
 
 figure('Name', 'signals_2');
-stem(n, s);
+stem(n1, s);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(n, y1);
+stem(n1, y1);
 legend('input signal', 'filtered signal_2');
