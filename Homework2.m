@@ -107,7 +107,12 @@ hold on;
 stem(t, y);
 legend('input', 'Convolved signal');
 
-%% Homework2_2_1
+%% Homework2_2
+% Main purpose of this task is filtering of noisy signals
+%
+% In this part we want to make signals and then plot it
+%
+% Now first we declare signals and variables below
 M = 100;
 n1 = 0:1:200;
 n = 0:1:100;
@@ -115,6 +120,8 @@ w = 0.54 - 0.46 * sin(2 * pi * n / M);
 h = w .* (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
 s = sin(0.2 * pi * n1);
 x = s + sin(0.05 * pi * n1) + sin(0.35 * pi * n1);
+%%%
+% Now we plot our signal with and without interferenced signals
 
 figure('Name', 'signals');
 stem(n1, x);
@@ -127,6 +134,7 @@ stem(n1, s);
 legend('three frequencies', 'one frequency');
 %%%
 % Homework2_2_2
+%
 t = -50:50;
 y = filter(h, 1, x);
 figure('Name', 'signals');
