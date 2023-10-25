@@ -1,4 +1,4 @@
-%% * Homework2*
+%% *Homework2*
 %% Programmers
 %%%
 % Mohammad Mahdi Elyasi - 9823007
@@ -11,7 +11,7 @@ clear all;
 clc;
 
 %% Homework2_1_2
-% In this task we want to make a psudo-integrate filter and use the
+% * In this task we want to make a psudo-integrated filter and use the
 % function we made to filter input signal
 %
 % Here we declare some variables and signals
@@ -41,9 +41,9 @@ stem(t, y);
 legend('input', 'Convolved signal');
 
 %% Homework2_1_3
-% Here we do what we did prior for another filter, with myconv function
+% * Here we do what we did prior for another filter, with myconv function
 %
-% Now we declare variables and signals we wnat to use
+% Now we declare variables and signals we want to use
 h = [1];
 
 for j = 1:14
@@ -75,7 +75,7 @@ stem(t, y);
 legend('input', 'Convolved signal');
 
 %% Homework2_1_4
-% Here we do the same things as we did till now for another filter
+% * Here we do the same things as we did till now for another filter
 %
 % We declare variables and signals now
 x = [ones(1, 25) zeros(1, 25)];
@@ -108,9 +108,9 @@ stem(t, y);
 legend('input', 'Convolved signal');
 
 %% Homework2_2
-% Main purpose of this task is filtering of noisy signals
+% * Main purpose of this task is filtering of noisy signals
 %
-% In this part we want to make signals and then plot it
+% * In this part we want to make signals and then plot it
 %
 % Now first we declare signals and variables below
 M = 100;
@@ -133,7 +133,7 @@ hold on;
 stem(n1, s);
 legend('three frequencies', 'one frequency');
 %%%
-% Homework2_2_2
+% Homework2_2_2 :
 %
 % Here we filter signal, and plot signals on each other
 t = -50:50;
@@ -148,12 +148,13 @@ hold on;
 stem(n1, y);
 legend('input signal', 'filtered signal');
 %%%
-% Homework2_2_3
+% Homework2_2_3 :
 %
-% Here we make a filter with "filterDesigner" toolbox and then filter
+% * Here we make a filter with "filterDesigner" toolbox and then filter
 % our signal with it.
 %
 % Here we used Eliptic filter
+%
 FD = Filter_Designer;
 y1 = FD.filter(x);
 %%%
