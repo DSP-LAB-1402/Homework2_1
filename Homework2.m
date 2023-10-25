@@ -135,10 +135,11 @@ legend('three frequencies', 'one frequency');
 %%%
 % Homework2_2_2
 %
+% Here we filter signal, and plot signals on each other
 t = -50:50;
 y = filter(h, 1, x);
 figure('Name', 'signals');
-stem(n1, x);
+stem(n1, s);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
