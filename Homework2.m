@@ -11,97 +11,122 @@ clear all;
 clc;
 
 %% Homework2_2
-h = 0.1*ones(1,10);
+h = 0.1 * ones(1, 10);
 t = 0:1:199;
-x = [ones(1,25) zeros(1,25)];
+x = [ones(1, 25) zeros(1, 25)];
+
 for i = 1:3
-    x = [x ones(1,25) zeros(1,25)];
+    x = [x ones(1, 25) zeros(1, 25)];
 end
-y = myconv(x,h);
-y=y(1:200);
+
+y = myconv(x, h);
+y = y(1:200);
 
 figure('Name', 'Convolution');
-stem(t,x);
+stem(t, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(t,y);
+stem(t, y);
 legend('input', 'Convolved signal');
 %% Homework2_3
 h = [1];
+
 for j = 1:14
-    h = [h 0.75^(j)];
+    h = [h 0.75 ^ (j)];
 end
-h = 0.25*h;
-x = [ones(1,25) zeros(1,25)];
+
+h = 0.25 * h;
+x = [ones(1, 25) zeros(1, 25)];
 t = 0:1:199;
+
 for i = 1:3
-    x = [x ones(1,25) zeros(1,25)];
+    x = [x ones(1, 25) zeros(1, 25)];
 end
-y = myconv(x,h);
-y=y(1:200);
+
+y = myconv(x, h);
+y = y(1:200);
 
 figure('Name', 'Convolution');
-stem(t,x);
+stem(t, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(t,y);
+stem(t, y);
 legend('input', 'Convolved signal');
 %% Homework2_4
-x = [ones(1,25) zeros(1,25)];
+x = [ones(1, 25) zeros(1, 25)];
 t = 0:1:199;
+
 for i = 1:3
-    x = [x ones(1,25) zeros(1,25)];
+    x = [x ones(1, 25) zeros(1, 25)];
 end
-y = myconv([1,-1],x);
+
+y = myconv([1, -1], x);
+
 for i = 1:4
-    y = myconv([1,-1],y);
+    y = myconv([1, -1], y);
 end
-y = 1/5*y;
-y=y(1:200);
+
+y = 1/5 * y;
+y = y(1:200);
 figure('Name', 'Convolution');
-stem(t,x);
+stem(t, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(t,y);
+stem(t, y);
 legend('input', 'Convolved signal');
 %% Homework2_2_1
 M = 100;
 
-n=0:1:100;
-w=0.54-0.46*sin(2*pi*n/M);
-h = w.*(0.25*sinc(0.25*(n-M/2))-0.15*sinc(0.15*(n-M/2)));
-s = sin(0.2*pi*n);
-x = s + sin(0.05*pi*n) + sin(0.35*pi*n);
+n = 0:1:100;
+w = 0.54 - 0.46 * sin(2 * pi * n / M);
+h = w .* (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
+s = sin(0.2 * pi * n);
+x = s + sin(0.05 * pi * n) + sin(0.35 * pi * n);
 
 figure('Name', 'signals');
-stem(n,x);
+stem(n, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(n,s);
+stem(n, s);
 legend('three frequencies', 'one frequency');
 %%%
-t=-50:50;
-y= filter(h,1,x);
+% Homework2_2_2
+t = -50:50;
+y = filter(h, 1, x);
 figure('Name', 'signals');
-%stem(n,x);
+stem(n, x);
 xlabel('Samples');
 ylabel('Amplitude');
 title('Signals');
 grid on;
 hold on;
-stem(n,y);
+stem(n, y);
 hold on;
-stem(n,s);
+stem(n, s);
 legend('input signal', 'filtered signal');
+%%%
+% Homework2_2_3
+FD = Filter_Designer; % Eliptic
+y1 = FD.filter(x);
+
+figure('Name', 'signals_2');
+stem(n, s);
+xlabel('Samples');
+ylabel('Amplitude');
+title('Signals');
+grid on;
+hold on;
+stem(n, y1);
+legend('input signal', 'filtered signal_2');
