@@ -149,9 +149,15 @@ stem(n1, y);
 legend('input signal', 'filtered signal');
 %%%
 % Homework2_2_3
-FD = Filter_Designer; % Eliptic
+%
+% Here we make a filter with "filterDesigner" toolbox and then filter
+% our signal with it.
+%
+% Here we used Eliptic filter
+FD = Filter_Designer;
 y1 = FD.filter(x);
-
+%%%
+% Now we plot signals on each other
 figure('Name', 'signals_2');
 stem(n1, s);
 xlabel('Samples');
