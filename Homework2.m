@@ -27,18 +27,23 @@ end
 %%%
 % Here we make sure the length of y matches with input signal
 y = myconv(x, h);
-y = y(1:200);
+
 %%%
 % Here we plot signals on each other
 figure('Name', 'Convolution');
-stem(t, x);
+subplot(2,1,1)
+stem(x);
 xlabel('Samples');
 ylabel('Amplitude');
-title('Signals');
+title('Input Signal');
 grid on;
-hold on;
-stem(t, y);
-legend('input', 'Convolved signal');
+
+subplot(2,1,2)
+stem(y);
+xlabel('Samples');
+ylabel('Amplitude');
+grid on;
+title('Comvolved Signal');
 
 %% Homework2_1_3
 % * Here we do what we did prior for another filter, with myconv function
@@ -61,18 +66,23 @@ end
 %%%
 % Here we make sure the length of y matches with input signal
 y = myconv(x, h);
-y = y(1:200);
 %%%
 % Here we plot signals on each other
+
 figure('Name', 'Convolution');
-stem(t, x);
+subplot(2,1,1)
+stem(x);
 xlabel('Samples');
 ylabel('Amplitude');
-title('Signals');
+title('Input Signal');
 grid on;
-hold on;
-stem(t, y);
-legend('input', 'Convolved signal');
+
+subplot(2,1,2)
+stem(y);
+xlabel('Samples');
+ylabel('Amplitude');
+grid on;
+title('Comvolved Signal');
 
 %% Homework2_1_4
 % * Here we do the same things as we did till now for another filter
@@ -94,19 +104,24 @@ end
 %%%
 % Here we make sure the length of y matches with input signal
 y = 1/5 * y;
-y = y(1:200);
+% y = y(1:200);
 %%%
 % Here we plot signals on each other
+
 figure('Name', 'Convolution');
-stem(t, x);
+subplot(2,1,1)
+stem(x);
 xlabel('Samples');
 ylabel('Amplitude');
-title('Signals');
+title('Input Signal');
 grid on;
-hold on;
-stem(t, y);
-legend('input', 'Convolved signal');
 
+subplot(2,1,2)
+stem(y);
+xlabel('Samples');
+ylabel('Amplitude');
+grid on;
+title('Comvolved Signal');
 %% Homework2_2
 % * Main purpose of this task is filtering of noisy signals
 %
@@ -117,36 +132,55 @@ M = 100;
 n1 = 0:1:200;
 n = 0:1:100;
 w = 0.54 - 0.46 * sin(2 * pi * n / M);
+h1= (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
 h = w .* (0.25 * sinc(0.25 * (n - M / 2)) - 0.15 * sinc(0.15 * (n - M / 2)));
 s = sin(0.2 * pi * n1);
 x = s + sin(0.05 * pi * n1) + sin(0.35 * pi * n1);
 %%%
 % Now we plot our signal with and without interferenced signals
 
-figure('Name', 'signals');
-stem(n1, x);
+figure('Name', 'Convolution');
+subplot(2,1,1)
+stem(n1,x);
 xlabel('Samples');
 ylabel('Amplitude');
-title('Signals');
+title('noisy Signal');
 grid on;
-hold on;
-stem(n1, s);
-legend('three frequencies', 'one frequency');
+
+subplot(2,1,2)
+stem(n1,s);
+xlabel('Samples');
+ylabel('Amplitude');
+grid on;
+title('signle frequency Signal');
 %%%
 % Homework2_2_2 :
 %
 % Here we filter signal, and plot signals on each other
 t = -50:50;
 y = filter(h, 1, x);
-figure('Name', 'signals');
-stem(n1, s);
+y_ideal=filter(h1,1,x);
+
+figure('Name', 'Filtered signal');
+subplot(2,1,1)
+stem(n1,s);
 xlabel('Samples');
 ylabel('Amplitude');
-title('Signals');
+title('Output of Hmamming Filter');
+grid on;
+hold on;
+stem(n1, y_ideal);
+legend('input signal', 'Filtered signal');
+
+subplot(2,1,2)
+stem(n1,s);
+xlabel('Samples');
+ylabel('Amplitude');
 grid on;
 hold on;
 stem(n1, y);
 legend('input signal', 'filtered signal');
+title('Output of Ideal filter');
 %%%
 % Homework2_2_3 :
 %
@@ -155,8 +189,11 @@ legend('input signal', 'filtered signal');
 %
 % Here we used Eliptic filter
 %
-FD = Filter_Designer;
-y1 = FD.filter(x);
+FD_FIR = Filter_FIR;
+y1 = FD_FIR.filter(x);
+
+FD_IIR = Filter_IIR;
+y2 = FD_IIR.filter(x);
 %%%
 % Now we plot signals on each other
 figure('Name', 'signals_2');
@@ -167,4 +204,14 @@ title('Signals');
 grid on;
 hold on;
 stem(n1, y1);
-legend('input signal', 'filtered signal_2');
+legend('input signal', 'filtered by FIR');
+
+figure('Name', 'signals_3');
+stem(n1, s);
+xlabel('Samples');
+ylabel('Amplitude');
+title('Signals');
+grid on;
+hold on;
+stem(n1, y2);
+legend('input signal', 'filtered by IIR');
